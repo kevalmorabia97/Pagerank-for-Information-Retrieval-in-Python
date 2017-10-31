@@ -115,7 +115,7 @@ class PageRank():
     def topic_specific_page_rank(self,teleport_set):
         t = time.time()
         print("\nCalculating Topic Specific Page Rank:")
-        #print("Teleport Set",teleport_set)
+        print("Teleport Set",teleport_set)
         if(not self.is_page_no_zero_indexed):
             teleport_set = [i-1 for i in teleport_set]
 
@@ -160,7 +160,7 @@ class PageRank():
         return rank_vector        
     ################### END OF TOPIC SPECIFIC PAGE RANK #######################
     
-    def display_network(self,rank_vector, max_nodes_to_show):
+    def display_network(self, max_nodes_to_show):
         print("Displaying webpages in the form of a network")
         #############
         ##REMAINING##
