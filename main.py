@@ -2,8 +2,8 @@ from PageRank import *
 import time
 
 start_time = time.time()
-##data_file = "C:\\Page Rank Implementation Python\\Datasets\\sx-mathoverflow.txt"
-data_file = "C:\\Page Rank Implementation Python\\Datasets\\Wiki-Vote.txt"
+data_file = "G:\\Study\\Programming\\Python\\Pagerank-for-Information-Retrieval-in-Python\\Datasets\\sx-mathoverflow.txt"
+##data_file = "G:\\Study\\Programming\\Python\\Pagerank-for-Information-Retrieval-in-Python\\Datasets\\Wiki-Vote.txt"
 is_page_no_zero_indexed = False
 epsilon = 0.00001
 max_iterations = 10
