@@ -1,19 +1,22 @@
 import time
+from igraph import *
 
 class PageRank():
     
-    def __init__(self, data_file, is_page_no_zero_indexed, max_iterations, beta, epsilon):
+    def __init__(self, data_file, is_page_no_zero_indexed, max_iterations, beta, epsilon, display_network_after_each_iteration):
         assert beta>0 and beta<1
         self.is_page_no_zero_indexed = is_page_no_zero_indexed
         self.max_iterations = max_iterations
         self.beta = beta
         self.epsilon = epsilon
+        self.display_network_after_each_iteration = display_network_after_each_iteration
         
         t = time.time()
         print("\nReading file and creating adjacency list")
         f = open(data_file)
 
         adjacency_list={}
+        edges = []
         no_of_pages = 0
         while True:
             edge=f.readline()
@@ -24,17 +27,19 @@ class PageRank():
                 continue
             a = int(x[0])
             b = int(x[1])
+            edges.append((a,b)) 
             if(not is_page_no_zero_indexed):
                 a-=1
                 b-=1
             if(a not in adjacency_list):
                 adjacency_list[a] = []
-            adjacency_list[a].append(b)    
+            adjacency_list[a].append(b)   
             no_of_pages = max(a,b,no_of_pages)
         f.close()
         no_of_pages+=1 #0-indexed values
         self.no_of_pages = no_of_pages
         self.adjacency_list = adjacency_list
+        self.edges = edges
         print("Total No of Pages",self.no_of_pages)
         t = time.time()-t
         print("File read and Adjacency List creation time:",t,"secs")
@@ -85,6 +90,15 @@ class PageRank():
                     done = False
                     break
             rank_vector = next_rank_vector
+            
+            if(self.display_network_after_each_iteration):
+                if(self.is_page_no_zero_indexed):
+                    temp = [[i,rank_vector[i]] for i in range(len(rank_vector))]
+                else:
+                    temp = [[i+1,rank_vector[i]] for i in range(len(rank_vector))]
+                temp = sorted(temp, key = lambda x:x[1], reverse=True)
+                self.display_network(temp, 10)            
+            
             if(done):
                 break
 
@@ -143,6 +157,7 @@ class PageRank():
                     done = False
                     break
             rank_vector = next_rank_vector
+            
             if(done):
                 break
 
@@ -150,21 +165,39 @@ class PageRank():
         print("Sum of all ranks =",rank_sum)
 
         if(self.is_page_no_zero_indexed):
-            rank_vector = [[i,rank_vector[i]] for i in range(no_of_pages)]
+            rank_vector = [[i,rank_vector[i]] for i in range(len(rank_vector))]
         else:
-            rank_vector = [[i+1,rank_vector[i]] for i in range(no_of_pages)]
+            rank_vector = [[i+1,rank_vector[i]] for i in range(len(rank_vector))]
         rank_vector = sorted(rank_vector, key = lambda x:x[1], reverse=True)
-        t = time.time()-t
-        print("Topic Specific Page rank calculation time:",t,"secs")
-
         return rank_vector        
     ################### END OF TOPIC SPECIFIC PAGE RANK #######################
     
-    def display_network(self, max_nodes_to_show):
-        print("Displaying webpages in the form of a network")
-        #############
-        ##REMAINING##
-        #############
-    ################### END OF DISPLAY NETWORK ################################
-    
+    #Show network only of pages with top k page_ranks
+    def display_network(self, page_ranks, max_nodes_to_show):
+        print("\nDisplaying top", max_nodes_to_show, "webpages in the form of a network")
+        g = Graph(directed = True)
+        
+        page_ranks = page_ranks[:max_nodes_to_show]
+        new_labels = []
+        edges_dict = {}
+        i = 0
+        for p in page_ranks:
+            edges_dict[p[0]] = i
+            new_labels.append(p[0])
+            #new_labels.append(str(p[0])+":"+str(p[1])[:6])
+            i+=1
+        
+        new_edges = [(edges_dict[i[0]],edges_dict[i[1]]) for i in self.edges if i[0] in edges_dict and i[1] in edges_dict]
+        
+        g.add_vertices(len(page_ranks))
+        g.add_edges(new_edges)
+        page_ranks = [i[1] for i in page_ranks]
+        
+        visual_style = {}
+        visual_style["vertex_size"] = [15000*i for i in page_ranks]
+        visual_style["vertex_label"] = new_labels
+        visual_style["vertex_color"] = ["yellow","red","green","blue","purple","orange","pink"]
+        plot(g, **visual_style)
+    ################### END OF DISPLAY NETWORK ################################.
+
 ########################### END OF CLASS ######################################
