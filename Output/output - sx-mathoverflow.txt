@@ -1,0 +1,59 @@
+Reading file and creating adjacency list
+Total No of Pages 8297
+File read and Adjacency List creation time: 0.18201112747192383 secs
+
+Constructing sparse matrix of in and out links
+Matrix creation time: 0.06061863899230957 secs
+
+Calculating Page Rank
+Iteration 1
+Iteration 2
+Iteration 3
+Iteration 4
+Iteration 5
+Iteration 6
+Iteration 7
+Iteration 8
+Iteration 9
+Sum of all ranks = 0.9999999999998981
+Page rank calculation time: 0.37647485733032227 secs
+Rank Vector:
+[4037, 0.004347748770088132]
+[15, 0.003472701268556771]
+[6634, 0.003379446954540664]
+[2625, 0.0030990722430140195]
+[2398, 0.0024616389391647897]
+[2470, 0.002381852489705288]
+[2237, 0.0023562966435730927]
+[4191, 0.002140078980100957]
+[7553, 0.002047444701718334]
+[5254, 0.0020290067142305548]
+
+Displaying top 20 webpages in the form of a network
+
+Calculating Topic Specific Page Rank:
+Teleport Set [1, 501, 1001, 1501, 2001, 2501, 3001, 3501, 4001, 4501, 5001, 5501, 6001, 6501, 7001, 7501, 8001]
+Iteration 1
+Iteration 2
+Iteration 3
+Iteration 4
+Iteration 5
+Iteration 6
+Iteration 7
+Iteration 8
+Iteration 9
+Iteration 10
+Sum of all ranks = 1.0
+Topic Specific Rank Vector:
+[2001, 0.02162966964804991]
+[6501, 0.02162222883139097]
+[1501, 0.021607456245257152]
+[6001, 0.021603587024954133]
+[2501, 0.021539591756935726]
+[1, 0.02147794533149458]
+[501, 0.02147794533149458]
+[1001, 0.02147794533149458]
+[3001, 0.02147794533149458]
+[3501, 0.02147794533149458]
+
+Total Running time: 4.91089391708374 secs

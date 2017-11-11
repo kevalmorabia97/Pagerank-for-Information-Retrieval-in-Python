@@ -197,7 +197,8 @@ class PageRank():
         visual_style["vertex_size"] = [15000*i for i in page_ranks]
         visual_style["vertex_label"] = new_labels
         visual_style["vertex_color"] = ["yellow","red","green","blue","purple","orange","pink"]
-        plot(g, **visual_style)
+        out = plot(g, **visual_style)
+        #out.save("Page Rank Network Structure.png")
     ################### END OF DISPLAY NETWORK ################################.
 
 ########################### END OF CLASS ######################################
