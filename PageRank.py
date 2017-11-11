@@ -97,7 +97,7 @@ class PageRank():
                 else:
                     temp = [[i+1,rank_vector[i]] for i in range(len(rank_vector))]
                 temp = sorted(temp, key = lambda x:x[1], reverse=True)
-                self.display_network(temp, 10)            
+                self.display_network(temp, 20)            
             
             if(done):
                 break

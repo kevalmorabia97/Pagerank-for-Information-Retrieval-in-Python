@@ -1,22 +1,40 @@
 Reading file and creating adjacency list
 Total No of Pages 8297
-File read and Adjacency List creation time: 0.18201112747192383 secs
+File read and Adjacency List creation time: 0.1820969581604004 secs
 
 Constructing sparse matrix of in and out links
-Matrix creation time: 0.06061863899230957 secs
+Matrix creation time: 0.05472302436828613 secs
 
 Calculating Page Rank
 Iteration 1
+
+Displaying top 20 webpages in the form of a network
 Iteration 2
+
+Displaying top 20 webpages in the form of a network
 Iteration 3
+
+Displaying top 20 webpages in the form of a network
 Iteration 4
+
+Displaying top 20 webpages in the form of a network
 Iteration 5
+
+Displaying top 20 webpages in the form of a network
 Iteration 6
+
+Displaying top 20 webpages in the form of a network
 Iteration 7
+
+Displaying top 20 webpages in the form of a network
 Iteration 8
+
+Displaying top 20 webpages in the form of a network
 Iteration 9
+
+Displaying top 20 webpages in the form of a network
 Sum of all ranks = 0.9999999999998981
-Page rank calculation time: 0.37647485733032227 secs
+Page rank calculation time: 8.11790680885315 secs
 Rank Vector:
 [4037, 0.004347748770088132]
 [15, 0.003472701268556771]
@@ -28,6 +46,16 @@ Rank Vector:
 [4191, 0.002140078980100957]
 [7553, 0.002047444701718334]
 [5254, 0.0020290067142305548]
+[2328, 0.0019245708084264855]
+[1186, 0.0019211655335996652]
+[1297, 0.0018366489587526708]
+[4335, 0.0018275872433736332]
+[7620, 0.0018229958003276076]
+[5412, 0.0018108175059090676]
+[7632, 0.0018000603875936994]
+[4875, 0.0017679180482338963]
+[6946, 0.001702235405704146]
+[3352, 0.0016835545650155297]
 
 Displaying top 20 webpages in the form of a network
 
@@ -55,5 +83,15 @@ Topic Specific Rank Vector:
 [1001, 0.02147794533149458]
 [3001, 0.02147794533149458]
 [3501, 0.02147794533149458]
+[4001, 0.02147794533149458]
+[4501, 0.02147794533149458]
+[5001, 0.02147794533149458]
+[5501, 0.02147794533149458]
+[7001, 0.02147794533149458]
+[7501, 0.02147794533149458]
+[8001, 0.02147794533149458]
+[6774, 0.018940111867957563]
+[4792, 0.018734604945233737]
+[5289, 0.01845933906727118]
 
-Total Running time: 4.91089391708374 secs
+Total Running time: 9.584679365158081 secs
