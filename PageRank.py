@@ -2,7 +2,7 @@ import time
 from igraph import *
 
 class PageRank():
-    
+    ##Constructor
     def __init__(self, data_file, is_page_no_zero_indexed, max_iterations, beta, epsilon, display_network_after_each_iteration):
         assert beta>0 and beta<1
         self.is_page_no_zero_indexed = is_page_no_zero_indexed
@@ -15,8 +15,8 @@ class PageRank():
         print("\nReading file and creating adjacency list")
         f = open(data_file)
 
-        adjacency_list={}
-        edges = []
+        adjacency_list={} ## dictionary of list
+        edges = [] ## list of tuples of the form (a,b) i.e. edge from a to b
         no_of_pages = 0
         while True:
             edge=f.readline()
@@ -46,7 +46,7 @@ class PageRank():
 
         t = time.time()
         print("\nConstructing sparse matrix of in and out links")
-        matrix = {}
+        matrix = {} ## Sparse Matrix Representation because NxN matrix for large number of pages cannot be fitted in RAM
         for i in range(no_of_pages):
             matrix[i] = {} #index from 0 to no_of_pages-1
         for i in adjacency_list:
@@ -63,12 +63,13 @@ class PageRank():
         
     ###################### END OF CONSTRUCTOR #################################
     
+    ## Returns rank_vector of the form [[4,0.45],[2,0.23],[0,0.19],[1,0.09],[3,0.04]] i.e. in decresing order of page ranks along with page numbers
     def page_rank(self):
         t = time.time()
         print("\nCalculating Page Rank")
         no_of_pages = self.no_of_pages
         initial_rank = 1/no_of_pages
-        rank_vector = [initial_rank for i in range(no_of_pages)]
+        rank_vector = [initial_rank for i in range(no_of_pages)] # [1/N]Nx1
 
         for iteration in range(self.max_iterations):
             print("Iteration",iteration+1)
@@ -172,7 +173,7 @@ class PageRank():
         return rank_vector        
     ################### END OF TOPIC SPECIFIC PAGE RANK #######################
     
-    #Show network only of pages with top k page_ranks
+    #Show network only of pages with top k=max_nodes_to_show page_ranks
     def display_network(self, page_ranks, max_nodes_to_show):
         print("\nDisplaying top", max_nodes_to_show, "webpages in the form of a network")
         g = Graph(directed = True)
@@ -189,12 +190,12 @@ class PageRank():
         
         new_edges = [(edges_dict[i[0]],edges_dict[i[1]]) for i in self.edges if i[0] in edges_dict and i[1] in edges_dict]
         
-        g.add_vertices(len(page_ranks))
+        g.add_vertices(len(page_ranks)) #vertices numbered 0 to len(page_ranks)-1
         g.add_edges(new_edges)
         page_ranks = [i[1] for i in page_ranks]
         
         visual_style = {}
-        visual_style["vertex_size"] = [15000*i for i in page_ranks]
+        visual_style["vertex_size"] = [15000*i for i in page_ranks] # radius of nodes in proportion of their page ranks
         visual_style["vertex_label"] = new_labels
         visual_style["vertex_color"] = ["yellow","red","green","blue","purple","orange","pink"]
         out = plot(g, **visual_style)
