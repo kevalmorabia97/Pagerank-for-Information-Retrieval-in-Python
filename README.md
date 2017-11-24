@@ -5,6 +5,7 @@ Rank the pages in the corpus by considering the inlinks and outlinks.
 
 **Installing igraph in ubuntu:**
 ```
+Try step 3 first. If you get an error then follow from step 1. 
 1. Install aptitude: sudo apt install aptitude
 2. Installing the igraph C library: aptitude install build-essential libxml2-dev libglpk-dev libgmp3-dev libblas-dev liblapack-dev libarpack2-dev python-dev
 3. pip3 install python-igraph
@@ -14,7 +15,7 @@ Rank the pages in the corpus by considering the inlinks and outlinks.
 ```
 1. Open terminal and change to the directory containing the main.py file
 
-2.Open main.py:
+2. Open main.py:
 	A. Specify the data_file value.
 	B. If page numbers in dataset are 0-indexed then set is_page_no_zero_indexed = True otherwise set it to False
 	C. Set the value of epsilon for convergence
