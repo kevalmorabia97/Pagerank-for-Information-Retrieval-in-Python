@@ -122,17 +122,18 @@ class PageRank():
         if(self.is_page_no_zero_indexed):
             teleport_set = [i for i in range(self.no_of_pages)]
         else:
-            teleport_set = [i+1 for i in range(self.no_of_pages)]
+            teleport_set = [i+1 for i in range(self.no_of_pages)] #original page numbers were reduced by 1 so add 1 to bring to original page no
         return self.topic_specific_page_rank(teleport_set)    
     ######################## END OF PAGE RANK 2 ###############################
 
     #Takes care of dead ends
+	#Teleport set contains original page numbers
     def topic_specific_page_rank(self,teleport_set):
         t = time.time()
         print("\nCalculating Topic Specific Page Rank:")
         print("Teleport Set",teleport_set)
         if(not self.is_page_no_zero_indexed):
-            teleport_set = [i-1 for i in teleport_set]
+            teleport_set = [i-1 for i in teleport_set] # bring to zero indexed pages
 
         no_of_pages = self.no_of_pages
         initial_rank = 1/no_of_pages
@@ -174,13 +175,14 @@ class PageRank():
     ################### END OF TOPIC SPECIFIC PAGE RANK #######################
     
     #Show network only of pages with top k=max_nodes_to_show page_ranks
+	#PageRanks of the form [[4,0.45],[2,0.23],[0,0.19],[1,0.09],[3,0.04]] i.e. in decresing order of page ranks along with page numbers
     def display_network(self, page_ranks, max_nodes_to_show):
         print("\nDisplaying top", max_nodes_to_show, "webpages in the form of a network")
         g = Graph(directed = True)
         
         page_ranks = page_ranks[:max_nodes_to_show]
-        new_labels = []
-        edges_dict = {}
+        new_labels = [] #labels of pages to be shown in graph
+        edges_dict = {} #page number mapped to new edge number from 0 to max_nodes_to_show-1
         i = 0
         for p in page_ranks:
             edges_dict[p[0]] = i
